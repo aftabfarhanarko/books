@@ -22,16 +22,17 @@ import {
 const routes = [
   // Admin
   { label: "Admin Dashboard", icon: LayoutDashboard, path: "/admin/dashboard" },
-  { label: "User Dashboard", icon: LayoutDashboard, path: "/user/dashboard" },
-  { label: "Add Books", icon: BookPlus, path: "/admin/add-books" },
-  { label: "Manage Books", icon: BookOpen, path: "/admin/manage-books" },
-  { label: "Reviews", icon: Star, path: "/admin/reviews" },
-  { label: "Tutorials", icon: GraduationCap, path: "/admin/tutorials" },
-  { label: "User Manage", icon: Users, path: "/admin/user-manage" },
+  { label: "Admin Add Books", icon: BookPlus, path: "/admin/add-books" },
+  { label: "Admin Category Books", icon: BookOpen, path: "/admin/category" },
+  { label: "Admin Manage Books", icon: BookOpen, path: "/admin/manage-books" },
+  { label: "Admin Tutorials", icon: GraduationCap, path: "/admin/tutorials" },
+  { label: "Admin User Manage", icon: Users, path: "/admin/user-manage" },
+  { label: "Admin Reviews", icon: Star, path: "/admin/reviews" },
 
   // User
-  { label: "All Books", icon: BookOpen, path: "/user/all-books" },
-  { label: "My Library", icon: Library, path: "/user/my-library" },
+  { label: "User Dashboard", icon: LayoutDashboard, path: "/user/dashboard" },
+  { label: "User All Books", icon: BookOpen, path: "/user/all-books" },
+  { label: "User Personal Library", icon: Library, path: "/user/my-library" },
   { label: "User Tutorials", icon: GraduationCap, path: "/user/tutorials" },
 ];
 
@@ -97,7 +98,9 @@ const Sidebar = () => {
               className="shrink-0"
             />
             {!collapsed && (
-              <span className="text-sm whitespace-nowrap">{label}</span>
+              <span className="text-md font-medium whitespace-nowrap">
+                {label}
+              </span>
             )}
           </Link>
         ))}

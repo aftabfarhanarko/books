@@ -21,14 +21,14 @@ const TopNavbar = () => {
             >
               <Menu size={18} />
             </button>
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-500 text-white shadow-sm">
                 <BookOpen size={18} strokeWidth={2} />
               </div>
               <span className="hidden lg:inline text-sm font-semibold tracking-tight text-slate-900">
                 Book dashboard
               </span>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex-1 flex items-center justify-end gap-4">
