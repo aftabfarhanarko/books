@@ -50,8 +50,8 @@ const Sidebar = () => {
   return (
     <aside
       className={`
-        ${collapsed ? "w-[72px]" : "w-64"}
-        min-h-screen bg-white
+        ${collapsed ? "w-[62px]" : "w-64"}
+        fixed  top-0 self-start h-screen bg-white
         flex flex-col transition-all duration-300 ease-in-out
         border-r border-slate-200 relative overflow-hidden
       `}
@@ -65,16 +65,10 @@ const Sidebar = () => {
           <div className="flex items-center gap-2.5">
             <BookMarked size={26} className="text-sky-500" strokeWidth={2} />
             <span className="text-slate-900 font-bold text-lg tracking-tight">
-              BookVault
+              Librivo
             </span>
           </div>
         )}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-2 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-500 transition-colors cursor-pointer"
-        >
-          {collapsed ? <Menu size={20} /> : <X size={20} />}
-        </button>
       </div>
 
       {/* Main Nav */}
@@ -148,6 +142,18 @@ const Sidebar = () => {
           <LogOut size={18} strokeWidth={1.8} />
           {!collapsed && <span className="text-sm">Logout</span>}
         </Link>
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className={`mt-3 flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-600 hover:bg-sky-50 hover:border-sky-300 hover:text-sky-600 transition-all duration-200 ${
+            collapsed ? "mx-2 py-2" : "mx-1 py-2 gap-2"
+          }`}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {collapsed ? <Menu size={18} /> : <X size={18} />}
+          {!collapsed && (
+            <span className="text-xs font-medium">Collapse sidebar</span>
+          )}
+        </button>
       </div>
     </aside>
   );

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "BookWorm",
+  title: "Librivo",
   description: "Book recommendation and reading tracker dashboard",
 };
 
