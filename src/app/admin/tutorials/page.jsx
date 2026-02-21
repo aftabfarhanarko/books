@@ -19,47 +19,48 @@ const tutorials = [
 export default function AdminTutorialsPage() {
   return (
     <div className="flex flex-1 overflow-hidden">
-      <main className="flex-1 overflow-y-auto p-8 bg-gradient-to-br from-slate-900/80 via-slate-950 to-slate-900/80">
-        <section className="rounded-2xl border border-slate-800 bg-slate-900/70 px-6 py-5 shadow-lg shadow-slate-950/40">
+      <main className="flex-1 overflow-y-auto p-8 bg-background">
+        <section className="rounded-2xl border border-border bg-card px-6 py-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-lg font-semibold text-slate-50">
+            <h1 className="text-lg font-semibold text-foreground">
               Manage Tutorials
             </h1>
-            <button className="px-3 py-1.5 rounded-full text-xs font-medium bg-indigo-600 text-white hover:bg-indigo-500">
+            <button className="px-3 py-1.5 rounded-full text-xs font-medium bg-primary text-primary-foreground hover:opacity-90">
               Add YouTube link
             </button>
           </div>
-          <p className="text-xs text-slate-400 mb-4">
-            Manage the list of YouTube tutorials for your users. Later you will
-            connect this table to your real storage and actions.
+          <p className="text-xs text-muted-foreground mb-4">
+            Preview a few YouTube tutorials directly inside the admin panel.
+            Later you can connect this list to real data.
           </p>
-          <div className="rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-xs text-slate-300">
-            <div className="mb-2 flex items-center justify-between text-[11px] text-slate-400">
-              <span>Title</span>
-              <span>Category</span>
-              <span>URL</span>
-              <span>Actions</span>
-            </div>
-            <div className="space-y-2">
-              {tutorials.map((item) => (
-                <div
+          <div className="grid gap-4 md:grid-cols-3">
+            {tutorials.map((item) => {
+              const embedUrl = item.url.replace("watch?v=", "embed/");
+              return (
+                <article
                   key={item.url}
-                  className="grid grid-cols-[2fr,1fr,2fr,auto] items-center gap-2 rounded-lg border border-slate-800 bg-slate-950/80 px-3 py-2"
+                  className="rounded-2xl border border-border bg-card p-3 shadow-sm flex flex-col gap-2"
                 >
-                  <span className="text-slate-100">{item.title}</span>
-                  <span className="text-slate-400">{item.category}</span>
-                  <span className="truncate text-slate-500">{item.url}</span>
-                  <div className="flex gap-1">
-                    <button className="rounded-full border border-slate-700 px-2 py-1 text-[11px] hover:bg-slate-800">
-                      Edit
-                    </button>
-                    <button className="rounded-full border border-red-700 px-2 py-1 text-[11px] text-red-200 hover:bg-red-900/40">
-                      Delete
-                    </button>
+                  <div className="w-full h-40 rounded-xl overflow-hidden border border-border bg-black">
+                    <iframe
+                      src={embedUrl}
+                      title={item.title}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
                   </div>
-                </div>
-              ))}
-            </div>
+                  <div className="space-y-1">
+                    <h2 className="text-sm font-medium text-foreground line-clamp-2">
+                      {item.title}
+                    </h2>
+                    <p className="text-[11px] text-muted-foreground">
+                      {item.category}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </section>
       </main>

@@ -24,7 +24,6 @@ const routes = [
   { label: "Admin Dashboard", icon: LayoutDashboard, path: "/admin/dashboard" },
   { label: "Admin Add Books", icon: BookPlus, path: "/admin/add-books" },
   { label: "Admin Category Books", icon: BookOpen, path: "/admin/category" },
-  { label: "Admin Manage Books", icon: BookOpen, path: "/admin/manage-books" },
   { label: "Admin Tutorials", icon: GraduationCap, path: "/admin/tutorials" },
   { label: "Admin User Manage", icon: Users, path: "/admin/user-manage" },
   { label: "Admin Reviews", icon: Star, path: "/admin/reviews" },
