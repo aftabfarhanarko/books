@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       >
         <div className="flex min-h-screen flex-col md:flex-row">
           {/* Sidebar */}
-          <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-slate-200 bg-white">
+          <aside className="hidden md:block md:w-64 border-r border-slate-200 bg-white">
             <Sidebar />
           </aside>
 
