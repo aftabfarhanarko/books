@@ -1,6 +1,3 @@
-export const dynamic = "force-static";
-
-import { DashboardShell } from "@/components/dashboard/DashboardShell";
 
 const bookTabs = ["Popular", "Top Selling", "Following", "New"];
 
@@ -50,114 +47,12 @@ const blogs = [
   },
 ];
 
-const recommendations = [
-  {
-    title: "Slow Mornings, Strong Stories",
-    reason: "Because you enjoy emotional contemporary fiction",
-  },
-  {
-    title: "Deep Work",
-    reason: "Based on your interest in focus and productivity books",
-  },
-  {
-    title: "The Midnight Library",
-    reason: "You like reflective, what-if style narratives",
-  },
-];
-
-const readingGoal = {
-  year: 2026,
-  targetBooks: 50,
-  readBooks: 18,
-  pagesRead: 5200,
-  avgRating: 4.2,
-};
-
-const activityFeed = [
-  "Alex finished reading “Deep Work”.",
-  "Mia rated “The Midnight Library” 5 stars.",
-  "Jordan added “Educated” to Currently Reading.",
-];
-
 export default function Home() {
   return (
     <DashboardShell>
       <div className="flex flex-1 overflow-hidden">
         {/* Center Column */}
         <main className="flex-1 overflow-y-auto p-8 flex flex-col gap-10 bg-gradient-to-br from-slate-900/80 via-slate-950 to-slate-900/80">
-              <section className="rounded-2xl border border-slate-800 bg-slate-900/60 px-5 py-4 shadow-lg shadow-slate-950/40 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                  <h1 className="text-xl font-semibold text-slate-50">
-                    Your reading year {readingGoal.year}
-                  </h1>
-                  <p className="text-xs text-slate-400">
-                    Reading challenge and quick stats for your current year.
-                  </p>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div className="relative h-16 w-16">
-                    <svg className="h-16 w-16 -rotate-90">
-                      <circle
-                        cx="32"
-                        cy="32"
-                        r="26"
-                        className="stroke-slate-700"
-                        strokeWidth="6"
-                        fill="transparent"
-                      />
-                      <circle
-                        cx="32"
-                        cy="32"
-                        r="26"
-                        className="stroke-emerald-400"
-                        strokeWidth="6"
-                        fill="transparent"
-                        strokeDasharray={2 * Math.PI * 26}
-                        strokeDashoffset={
-                          2 *
-                          Math.PI *
-                          26 *
-                          (1 - readingGoal.readBooks / readingGoal.targetBooks)
-                        }
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-[11px]">
-                      <span className="text-slate-200">
-                        {readingGoal.readBooks}
-                      </span>
-                      <span className="text-slate-500">of</span>
-                      <span className="text-slate-400">
-                        {readingGoal.targetBooks}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-[11px] text-slate-300">
-                    <div>
-                      <span className="text-slate-400">Pages read</span>
-                      <div>{readingGoal.pagesRead}</div>
-                    </div>
-                    <div>
-                      <span className="text-slate-400">Average rating</span>
-                      <div>⭐ {readingGoal.avgRating}</div>
-                    </div>
-                    <div>
-                      <span className="text-slate-400">Books read</span>
-                      <div>{readingGoal.readBooks}</div>
-                    </div>
-                    <div>
-                      <span className="text-slate-400">Goal progress</span>
-                      <div>
-                        {Math.round(
-                          (readingGoal.readBooks / readingGoal.targetBooks) *
-                            100
-                        )}
-                        %
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
               {/* Book Section */}
               <section className="rounded-2xl border border-slate-800 bg-slate-900/60 px-5 py-4 shadow-lg shadow-slate-950/40">
                 <div className="flex items-center justify-between mb-5">
@@ -237,51 +132,10 @@ export default function Home() {
                   ))}
                 </div>
               </section>
-
-              <section className="rounded-2xl border border-amber-500/40 bg-gradient-to-r from-amber-900/40 via-slate-900 to-amber-900/40 px-5 py-4 shadow-lg shadow-amber-900/40">
-                <div className="flex items-center justify-between mb-3">
-                  <div>
-                    <h2 className="text-base font-bold text-amber-100">
-                      Recommended for you
-                    </h2>
-                    <p className="text-[11px] text-amber-200/80">
-                      Simple suggestions based on your shelves and recent reads.
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-amber-500/20 px-3 py-1 text-[11px] text-amber-100">
-                    Cozy picks
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-3">
-                  {recommendations.map((item) => (
-                    <div
-                      key={item.title}
-                      className="rounded-xl border border-amber-500/40 bg-amber-950/40 px-3 py-3 text-[11px] text-amber-100"
-                    >
-                      <div className="font-semibold mb-1">{item.title}</div>
-                      <div className="text-amber-200/80">{item.reason}</div>
-                    </div>
-                  ))}
-                </div>
-              </section>
         </main>
 
         {/* Right Panel */}
-        <aside className="w-72 border-l border-slate-800 overflow-y-auto p-6 flex flex-col gap-6 bg-slate-950/90 flex-shrink-0">
-              <section className="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-4">
-                <h2 className="text-base font-bold text-slate-50 mb-2">
-                  Activity feed
-                </h2>
-                <ul className="space-y-2 text-[11px] text-slate-300">
-                  {activityFeed.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <span className="mt-0.5 h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-
+        <aside className="w-72 border-l border-slate-800 overflow-y-auto p-6 flex flex-col gap-8 bg-slate-950/90 flex-shrink-0">
               {/* Trending Authors */}
               <section className="rounded-2xl border border-slate-800 bg-slate-900/70 px-4 py-4">
                 <h2 className="text-base font-bold text-slate-50 mb-4">
