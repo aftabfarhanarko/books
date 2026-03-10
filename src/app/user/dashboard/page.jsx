@@ -138,7 +138,7 @@ function UserStatCard({ icon: Icon, label, value, tone }) {
       : "bg-slate-50 text-slate-600";
 
   return (
-    <div className="rounded-2xl border border-border bg-card px-4 py-4 flex flex-col gap-2 shadow-sm">
+    <div className="rounded-2xl border border-border bg-card px-4 py-3.5 flex flex-col gap-2 shadow-sm">
       <div className="flex items-center justify-between">
         <p className="text-[11px] text-muted-foreground">{label}</p>
         <div
