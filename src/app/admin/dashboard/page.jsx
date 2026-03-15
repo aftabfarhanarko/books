@@ -1,6 +1,13 @@
 "use client";
 
-import { Users, BookOpen, Star, Layers } from "lucide-react";
+import {
+  Users,
+  BookOpen,
+  Star,
+  Layers,
+  ArrowUpRight,
+  ArrowDownRight,
+} from "lucide-react";
 import {
   BarChart,
   Bar,
@@ -12,29 +19,47 @@ import {
 
 const metrics = {
   totalUsers: 1240,
+  usersTrend: { label: "+4.1% this week", direction: "up" },
   totalBooks: 982,
+  booksTrend: { label: "+1.8% this week", direction: "up" },
   totalReviews: 347,
+  reviewsTrend: { label: "+6.4% this week", direction: "up" },
   totalCategories: 24,
+  categoriesTrend: { label: "4 featured", direction: "flat" },
 };
 
 const weeklyNewUsers = [
-  { day: "D1", value: 18 },
-  { day: "D2", value: 24 },
-  { day: "D3", value: 20 },
-  { day: "D4", value: 32 },
-  { day: "D5", value: 28 },
-  { day: "D6", value: 30 },
-  { day: "D7", value: 26 },
+  { day: "Mon", value: 22 },
+  { day: "Tue", value: 25 },
+  { day: "Wed", value: 21 },
+  { day: "Thu", value: 33 },
+  { day: "Fri", value: 28 },
+  { day: "Sat", value: 29 },
+  { day: "Sun", value: 26 },
 ];
 
 const weeklyNewBooks = [
-  { day: "D1", value: 6 },
-  { day: "D2", value: 8 },
-  { day: "D3", value: 5 },
-  { day: "D4", value: 10 },
-  { day: "D5", value: 7 },
-  { day: "D6", value: 9 },
-  { day: "D7", value: 8 },
+  { day: "Mon", value: 6 },
+  { day: "Tue", value: 9 },
+  { day: "Wed", value: 5 },
+  { day: "Thu", value: 11 },
+  { day: "Fri", value: 7 },
+  { day: "Sat", value: 10 },
+  { day: "Sun", value: 8 },
+];
+
+const recentUsers = [
+  { id: "USR-1098", name: "Arif Hossain", email: "arif.h@example.com", joined: "2h ago" },
+  { id: "USR-1097", name: "Mitu Rahman", email: "mitu.r@example.com", joined: "6h ago" },
+  { id: "USR-1096", name: "Tanvir Alam", email: "tanvir.a@example.com", joined: "1d ago" },
+  { id: "USR-1095", name: "Sadia Khan", email: "sadia.k@example.com", joined: "2d ago" },
+];
+
+const recentBooks = [
+  { id: "BK-354", title: "Deep Work", author: "Cal Newport", genre: "Productivity", added: "3h ago" },
+  { id: "BK-353", title: "Ikigai", author: "Hector Garcia", genre: "Self-help", added: "9h ago" },
+  { id: "BK-352", title: "Project Hail Mary", author: "Andy Weir", genre: "Sci‑Fi", added: "1d ago" },
+  { id: "BK-351", title: "The Alchemist", author: "Paulo Coelho", genre: "Fiction", added: "2d ago" },
 ];
 
 const AdminDashbordpage = () => {
@@ -51,6 +76,13 @@ const AdminDashbordpage = () => {
                 High level stats for users, books, reviews, and categories.
               </p>
             </div>
+            <div>
+              <select className="border border-input bg-background text-xs rounded-full px-3 py-1.5 outline-none">
+                <option>Last 7 days</option>
+                <option>Last 30 days</option>
+                <option>Last 12 months</option>
+              </select>
+            </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-4">
@@ -58,25 +90,25 @@ const AdminDashbordpage = () => {
               icon={Users}
               label="Total users"
               value={metrics.totalUsers}
-              trend="+32 this week"
+              trend={metrics.usersTrend}
             />
             <DashboardCard
               icon={BookOpen}
               label="Total books"
               value={metrics.totalBooks}
-              trend="+18 this week"
+              trend={metrics.booksTrend}
             />
             <DashboardCard
               icon={Star}
               label="Total reviews"
               value={metrics.totalReviews}
-              trend="+54 this week"
+              trend={metrics.reviewsTrend}
             />
             <DashboardCard
               icon={Layers}
               label="Total categories"
               value={metrics.totalCategories}
-              trend="4 featured"
+              trend={metrics.categoriesTrend}
             />
           </div>
 
@@ -86,7 +118,7 @@ const AdminDashbordpage = () => {
                 New users (last 7 days)
               </h2>
               <p className="text-[11px] text-muted-foreground mb-4">
-                Demo chart showing how many new readers joined BookWorm.
+                Count of readers who created accounts over the past week.
               </p>
               <div className="h-40">
                 <ResponsiveContainer width="100%" height="100%">
@@ -122,7 +154,7 @@ const AdminDashbordpage = () => {
                 New books (last 7 days)
               </h2>
               <p className="text-[11px] text-muted-foreground mb-4">
-                Demo chart for how many new books were added to the catalog.
+                Number of books added to the catalog over the past week.
               </p>
               <div className="h-40">
                 <ResponsiveContainer width="100%" height="100%">
@@ -153,6 +185,50 @@ const AdminDashbordpage = () => {
               </div>
             </div>
           </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="rounded-2xl border border-border bg-card px-6 py-5 shadow-sm">
+              <h2 className="text-sm font-semibold text-foreground mb-1">
+                Recent signups
+              </h2>
+              <p className="text-[11px] text-muted-foreground mb-3">
+                Latest readers who joined.
+              </p>
+              <ul className="divide-y divide-border rounded-xl border border-border/60 bg-background overflow-hidden">
+                {recentUsers.map((u) => (
+                  <li key={u.id} className="flex items-center justify-between px-4 py-3">
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-foreground truncate">{u.name}</p>
+                      <p className="text-[11px] text-muted-foreground truncate">{u.email}</p>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground">{u.joined}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card px-6 py-5 shadow-sm">
+              <h2 className="text-sm font-semibold text-foreground mb-1">
+                Recently added books
+              </h2>
+              <p className="text-[11px] text-muted-foreground mb-3">
+                Latest catalog updates.
+              </p>
+              <ul className="divide-y divide-border rounded-xl border border-border/60 bg-background overflow-hidden">
+                {recentBooks.map((b) => (
+                  <li key={b.id} className="flex items-center justify-between px-4 py-3">
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-foreground truncate">{b.title}</p>
+                      <p className="text-[11px] text-muted-foreground truncate">
+                        {b.author} • {b.genre}
+                      </p>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground">{b.added}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </section>
       </main>
     </div>
@@ -169,7 +245,15 @@ function DashboardCard({ icon: Icon, label, value, trend }) {
         </div>
       </div>
       <p className="text-xl font-semibold text-foreground">{value}</p>
-      <p className="text-[11px] text-muted-foreground">{trend}</p>
+      <div className="flex items-center gap-1">
+        {trend?.direction === "up" && (
+          <ArrowUpRight className="size-3.5 text-emerald-600" />
+        )}
+        {trend?.direction === "down" && (
+          <ArrowDownRight className="size-3.5 text-red-600" />
+        )}
+        <p className="text-[11px] text-muted-foreground">{trend?.label}</p>
+      </div>
     </div>
   );
 }
