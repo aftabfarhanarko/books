@@ -32,7 +32,7 @@ const Settingspage = () => {
                     preference for now.
                   </p>
                 </div>
-                {/* wefgweyugfv 88yfhweghf hefy8g sefe wefwef we */}
+                {/* wefgweyugfv 88yfhweghf hefy8g sefe wefwef wergertgertr */}
                 <select className="border border-input bg-background text-xs rounded-md px-2 py-1 outline-none">
                   <option>Light</option>
                   <option>Dark</option>
